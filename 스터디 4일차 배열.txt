@@ -1,0 +1,103 @@
+#include<stdio.h>
+#define Max 5
+int main()
+{
+	int score[Max], score_total = 0, count = 0;
+	double score_avg = 0;
+	for (int i = 0; i < Max; i++)
+	{
+		printf("%d 번의 퀴즈 점수는 ? ", i+1);
+		scanf_s("%d", &score[i]);
+		score_total += score[i];
+	}
+	printf("\n");
+	score_avg = score_total / Max;
+	printf("번호 점수      평균과의 차이\n");
+
+	for (int i = 0; i < Max; i++)
+	{
+		printf("%3d  %3d        %5.2f\n", i+1, score[i], score[i]-score_avg );
+	}
+
+	printf("평균 : %.2f\n", score_avg);
+
+	for (int i = 0; i < Max; i++) {
+		if (score[i] < score_avg)
+			count++;
+	}
+
+	printf("평균 미만 : %d\n", count);
+}
+--------------------------------------------------------------------------------------
+#include<stdio.h>
+void sumcorow(int a[][5]) {
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			a[i][4] += a[i][j];
+			a[4][i] += a[j][i];
+			a[4][4] += a[i][j];
+		}
+	}
+}
+
+void print(int x[][5], int m, int n) {
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			printf("%5d", x[i][j]);
+		}
+		printf("\n");
+	}
+}
+int main()
+{
+	printf("다음 표의 세로와 가로합, 그리고 모든 합을 구합니다.\n");
+
+	int a[5][5] = { {35,28,67,73,0},{25,32,12,69,0},{97,56,14,23,0},{45,97,48,15,0},{0,0,0,0,0} };
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 5; j++) {
+			printf("%3d",a[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("위 표의 세로와 가로합, 그리고 모든 합을 \n 각각 행과 열의 마지막에 구합니다.\n");
+
+	sumcorow(a);
+
+	print(a, 5, 5);
+	
+}
+-----------------------------------------------------------------------------------------------------
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main()
+{
+	int sum = 0;
+	srand((unsigned)time(NULL));
+	int a[8][8];
+	for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+			a[i][j] = rand() % 151;
+			printf("%5d", a[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("\n외곽 요소만 출력한 배열\n\n");
+
+	for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+			if (i > 0 && i < 7 && j>0 && j < 7)
+				printf("     ");
+			else
+			{
+				printf("%5d", a[i][j]);
+				sum += a[i][j];
+			}
+		}
+		printf("\n");
+	}
+	printf("\n2차원 배열 외곽 요소의 합은 %d 입니다.", sum);
+}

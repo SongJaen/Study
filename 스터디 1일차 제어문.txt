@@ -1,0 +1,70 @@
+스터디 1일차 제어문 
+#include<stdio.h>
+int main()
+{
+	int s, count = 0;
+	int a,m,k;
+	printf("성별 <남 : 1 , 여 : 2> : ");
+	scanf_s("%d", &s);
+	switch (s) {
+	case 1:
+		printf("군 제대 <예 : 1, 아니오 : 2> : ");
+		scanf_s("%d", &a);
+		if (a == 1)
+			count++;
+		else
+			printf("군 가산점 : x\n");
+		printf("결혼 <예 : 1, 아니오 : 2> : ");
+		scanf_s("%d", &m);
+		if (m == 1)
+			count++;
+		else
+			printf("결혼 가산점 : x\n");
+
+		printf("총 가산점은 %d 점 입니다.\n", count);
+
+		return 0;
+	case 2:
+		printf("결혼 <예 : 1, 아니오 : 2> : ");
+		scanf_s("%d", &m);
+		if (m == 1) {
+			count++;
+			printf("자녀수 몇 명?  : ");
+			scanf_s("%d", &k);
+			printf("총 가산점은 %d 점입니다.",count+k);
+		}
+		else {
+			printf("가산점 : x");
+			return 0;
+		}
+	}
+	return 0;
+}
+---------------------------------------------------------------------------
+#include<stdio.h>
+int main()
+{
+	int money, time;
+	double  total,get;
+	printf("일주일동안 일한 시간을 입력하시오 : ");
+	scanf_s("%d",&time);
+	if (time > 30)
+	{
+		money = 3100 * 30;
+		total = (time - 30) * (3100 * 1.2);
+	}
+	else
+	{
+		money = 3100 * time;
+		total = 0;
+	}
+		get = money + total;
+		if (get > 100000) 
+			get = get-(get * 0.1);
+		else
+			get = get-(get * 0.05);
+	
+	
+	printf("임금은 %.2f 원 입니다.\n",get);
+
+}
